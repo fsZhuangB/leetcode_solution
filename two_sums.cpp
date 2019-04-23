@@ -9,7 +9,10 @@
 /*
 ** force method
 **/
-class Solution {
+namespace sf
+{
+class Solution 
+{
 public:
     std::vector<int> twoSum(std::vector<int>& nums, int target) {
         std::vector<int> result;
@@ -23,19 +26,24 @@ public:
                     result.push_back(j);
                     return result;
                 }
-
             }       
         }
         return result;
     }
 };
+}
 
+namespace sn 
+{
+
+
+}
 
 int main()
 {
     std::vector<int> num{1, 4, 3, 6, 5};
     std::vector<int> result;
-    Solution s;
+    sf::Solution s;
     result = s.twoSum(num, 7);
     for (auto i:result)
         std::cout << i << " ";
