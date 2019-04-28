@@ -35,6 +35,9 @@ public:
 
 namespace sn 
 {
+class solution2
+{
+}
 
 
 }
