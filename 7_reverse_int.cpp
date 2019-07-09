@@ -20,7 +20,7 @@ public:
 int main()
 {
     Solution s;
-    int x = 321;
+    int x = -321;
     int y = s.reverse(x);
     cout << x << endl;
     cout << "Reversed: " << endl;
