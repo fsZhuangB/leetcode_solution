@@ -33,6 +33,29 @@ public:
     }
 };
 
+class Solution2 
+{
+    public:
+        int romanToInt(string s)
+        {
+            int i, j;
+            int result = 0;
+            for (i = 0, j = 1; j < s.size(); i++, j++)
+            {
+                switch (s[i])
+                {
+                case 'I':
+                    result += 1;
+                case 'V':
+                    if (result )
+                default:
+                    break;
+                }
+            }
+
+        }
+};
+
 int main()
 {
     string s = "XL";
