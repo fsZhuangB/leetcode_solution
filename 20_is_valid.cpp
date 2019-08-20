@@ -9,33 +9,41 @@ public:
     bool isValid(string s) {
         stack<char> str;
 
-        int i;
-        for (i = 0; i < s.length(); i++)
+        auto begin = s.begin();
+        auto end = s.end();
+        for (; begin != end; ++begin)
         {
-            if (s[i] == '{' || s[i] == '[' || s[i] == '(')
-                str.push(s[i]);
+            if (*begin == '{' || *begin == '[' || *begin == '(')
+                str.push(*begin);
+            // 左括号
             else
             {
                 if (!str.empty())
                 {
                     char t = str.top();
                     str.pop();
-                    if (!((t == '(' && s[i] == ')') || (t == '[' && s[i] == ']') || (t == '{' && s[i] == '}')))
+                    if (!((*begin == ']' && t == '[') || (*begin == '}' && t == '{') || (*begin == ')' && t == '(')))
                         return false;
                 }
-                else 
+                /**
+                 * condition: ']'
+                 */
+                else
                     return false;
+
             }
         }
-        if (str.empty()) return true;
-        else return false;
+        if (str.empty())
+            return true;
+        else
+            return false; 
     }
 };
 
 int main()
 {
     Solution s;
-    string str = "({}[]]";
+    string str = "]";
     if (s.isValid(str))
         cout << "good!" << endl;
     else
