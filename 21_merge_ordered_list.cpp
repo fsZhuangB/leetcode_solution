@@ -15,6 +15,11 @@ struct ListNode {
     ListNode(int x) : val(x), next(NULL) {}
 };
 
+
+
+class Solution {
+public:
+
 int sizeList(ListNode* node)
 {
     int size = 0;
@@ -38,10 +43,6 @@ ListNode* getEndList(ListNode* node)
     }
     return end;
 }
-
-class Solution {
-public:
-
     ListNode *bubbleSortLists(ListNode *node)
     {
         if (node == NULL)
@@ -73,11 +74,21 @@ public:
 
     ListNode *mergeTwoLists(ListNode* l1, ListNode* l2) 
     {
-        /**将两个链表连接在一起 */
-        ListNode *endList = getEndList(l1);
+         /** 要注意判断l1或者l2是否为空 */
+        if (l1 == NULL)
+            return l2;
+        else if (l2 == NULL)
+            return l1;
+        else
+        {
+            /**将两个链表连接在一起 */
+            ListNode *endList = getEndList(l1);
 
-        endList->next = l2;
-        return bubbleSortLists(l1);
+            endList->next = l2;
+            return bubbleSortLists(l1);
+        }
+        
+
     }
 };
 
