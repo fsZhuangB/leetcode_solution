@@ -21,11 +21,22 @@ int sizeList(ListNode* node)
     ListNode *current = node;
     while (current != NULL)
     {
-        std::cout << current->val << std::endl;
         ++size;
         current = current->next;
     }
     return size;
+}
+
+ListNode* getEndList(ListNode* node)
+{
+    ListNode *current = node;
+    ListNode *end;
+    while (current != NULL)
+    {
+        end = current;
+        current = current->next;
+    }
+    return end;
 }
 
 class Solution {
@@ -63,8 +74,10 @@ public:
     ListNode *mergeTwoLists(ListNode* l1, ListNode* l2) 
     {
         /**将两个链表连接在一起 */
-        l1->next = l2;
-        return bubbleSortLists(l1);    
+        ListNode *endList = getEndList(l1);
+
+        endList->next = l2;
+        return bubbleSortLists(l1);
     }
 };
 
@@ -98,7 +111,9 @@ int main()
     node5.next = &node6;
     node6.next = NULL;
 
-    //iterate(&node4);
-    s.mergeTwoLists(&node1, &node4);
+    ListNode *newNode = s.mergeTwoLists(&node1, &node4);
+    
+    iterate(newNode);
+
     return 0;
 }
