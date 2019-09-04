@@ -43,35 +43,65 @@ ListNode* getEndList(ListNode* node)
     }
     return end;
 }
-    ListNode *bubbleSortLists(ListNode *node)
-    {
-        if (node == NULL)
-            return NULL;
-        else
-        {
-            int i;
-            ListNode *current = node;
-            int size = sizeList(node);
-            for (i = 0; i < size; i++)
-            {
-                while (current->next != NULL)
-                {
-                    if (current->val > current->next->val)
-                    {
-                        int temp;
-                        temp = current->val;
-                        current->val = current->next->val;
-                        current->next->val = temp;
-                    }
-                    current = current->next;
-                }
-                /**每次遍历结束，current都要重新回到链表头部 */
-                current = node;
-            }
-        }
-        return node;
-    }
+    // ListNode *bubbleSortLists(ListNode *node)
+    // {
+    //     if (node == NULL)
+    //         return NULL;
+    //     else
+    //     {
+    //         int i;
+    //         ListNode *current = node;
+    //         int size = sizeList(node);
+    //         for (i = 0; i < size; i++)
+    //         {
+    //             while (current->next != NULL)
+    //             {
+    //                 if (current->val > current->next->val)
+    //                 {
+    //                     int temp;
+    //                     temp = current->val;
+    //                     current->val = current->next->val;
+    //                     current->next->val = temp;
+    //                 }
+    //                 current = current->next;
+    //             }
+    //             /**每次遍历结束，current都要重新回到链表头部 */
+    //             current = node;
+    //         }
+    //     }
+    //     return node;
+    // }
 
+ListNode* bubbleSortLists(ListNode* node)
+{
+    if (node == NULL)
+        return NULL;
+
+    else
+    {
+    
+    ListNode *current = node;
+    int i;
+    for (i = 0; i < sizeList(node); ++i)
+    {
+        while (current->next != NULL)
+        {
+            if (current->val > current->next->val)
+            {
+                /**交换 */
+                int temp = current->val;
+                current->val = current->next->val;
+                current->next->val = temp;
+            }
+            current = current->next;
+        }
+        /** 每次循环结束，都要让current重新指向node头节点 */
+        current = node;
+    }
+    }
+    return node;
+
+}
     ListNode *mergeTwoLists(ListNode* l1, ListNode* l2) 
     {
          /** 要注意判断l1或者l2是否为空 */
@@ -87,7 +117,6 @@ ListNode* getEndList(ListNode* node)
             endList->next = l2;
             return bubbleSortLists(l1);
         }
-        
 
     }
 };
@@ -102,10 +131,37 @@ void iterate(ListNode *node)
     }
 }
 
+class Solution2
+{
+    /** 使用递归解决 */
+    public:
+    ListNode *mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if (l1 == NULL)
+            return l2;
+        else if (l2 == NULL)
+            return l1;
+        else
+        {
+            if (l1->val > l2->val)
+               { 
+                    l2->next = mergeTwoLists(l1, l2->next);
+                    return l2;
+               }
+            else
+            {
+                l1->next = mergeTwoLists(l1->next, l2);
+                return l1;
+            }   
+        }
+    }
+
+
+
+};
 
 int main()
 {
-    Solution s;
+    Solution s2;
 
     ListNode node1(1);
     ListNode node2(3);
@@ -122,9 +178,10 @@ int main()
     node5.next = &node6;
     node6.next = NULL;
 
-    ListNode *newNode = s.mergeTwoLists(&node1, &node4);
+    ListNode *newNode = s2.mergeTwoLists(&node1, &node4);
     
     iterate(newNode);
 
     return 0;
 }
+
