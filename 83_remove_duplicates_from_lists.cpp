@@ -44,6 +44,25 @@ public:
     }
 };
 
+
+ListNode* createList(int a[], int n)
+{
+    ListNode *head = NULL, *p = NULL;
+    for (int i = 0; i < n; i++)
+    {
+        if (head==NULL)
+        {
+            head = p = new ListNode(a[i]);
+        }
+        else
+        {
+            p->next = new ListNode(a[i]);
+            p = p->next;
+        }
+    }
+    return head;
+}
+
 void iterate(ListNode *node)
 {
     ListNode *current = node;
@@ -57,20 +76,10 @@ void iterate(ListNode *node)
 int main()
 {
     Solution s;
-    ListNode node1(1);
-    ListNode node2(3);
-    ListNode node3(4);
-    ListNode node4(4);
-    ListNode node5(6);
-    
+    int a[]={1,1,2,3,3};
 
-    node1.next = &node2;
-    node2.next = &node3;
-    node3.next = &node4;
-    node4.next = &node5;
-    node5.next = NULL;
 
-    iterate(s.deleteDuplicates(&node1));
+    iterate(s.deleteDuplicates(createList(a, sizeof(a)/sizeof(int))));
 
     return 0;
 }
