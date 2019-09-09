@@ -21,7 +21,7 @@ class ListNode {
     ListNode *next;
     ListNode(int x) : val(x), next(NULL) {}
 };
-ListNode *create_list(std::vector<int> &a, int n)
+ListNode *create_list(int a[], int n)
 {
     ListNode *head = NULL;
     ListNode *p = NULL;
@@ -56,35 +56,29 @@ public:
 
     ListNode* deleteDuplicates(ListNode* head) 
     {
-        std::vector<int> a;
+        //std::vector<int> a;
+        // int a[10];
         std::unordered_map<int, int> int_count;
         ListNode *current = head;
+        ListNode *header = NULL;
+        ListNode *p = NULL;
         for (; current != NULL; current = current->next)
             ++int_count[current->val];
-        for (const auto &w : int_count)
-        {
-            //std::cout << w.first << "is " << w.second << std::endl;
 
-            if (w.second == 1)
-                a.insert(a.begin(), w.first);
-        }
-    ListNode *head2 = NULL;
-    ListNode *p = NULL;
-    for (int i = 0; i < a.size(); i++)
-    {
-        if (head2 == NULL)
+        current = head;
+        ListNode* dummy = new ListNode(-1);
+        ListNode* res = dummy;
+        while (current)
         {
-            head2= p = new ListNode(a[i]);
+            if (int_count[current->val] == 1)
+            {
+                //std::cout << current->val << std::endl;
+                dummy->next = new ListNode(current->val);
+                dummy = dummy->next;
+            }
+            current = current->next;
         }
-        else
-        {
-            p->next = new ListNode(a[i]);
-            p = p->next;
-        }
-    }
-    return head2;
-                        
-        
+        return res->next;
     }
 };
 
@@ -93,8 +87,7 @@ public:
 int main()
 {
     Solution s;
-    std::vector<int> a{1, 2, 3, 3, 4, 4, 5};
+    int a[] = {1, 2, 3, 3, 4, 4, 5};
 
-    iterate(s.deleteDuplicates(create_list(a, a.size())));
-
+    iterate(s.deleteDuplicates(create_list(a, sizeof(a) / sizeof(int))));
 }
