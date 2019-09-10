@@ -73,13 +73,29 @@ void iterate(ListNode *node)
     }
 }
 
+class Solution2 
+{
+    public:
+    ListNode *deleteDuplicates(ListNode *head)
+    {
+        /** 第一步，处理平凡条件，head == NULL || head->next == NULL时 */
+        if (head == NULL || head->next == NULL)
+            return head;
+        head->next = deleteDuplicates(head->next);
+        if (head->val == head->next->val)
+            head = head->next;
+        
+        return head;
+        
+    }
+};
 int main()
 {
-    Solution s;
+    Solution2 s2;
     int a[]={1,1,2,3,3};
 
 
-    iterate(s.deleteDuplicates(createList(a, sizeof(a)/sizeof(int))));
+    iterate(s2.deleteDuplicates(createList(a, sizeof(a)/sizeof(int))));
 
     return 0;
 }
