@@ -41,3 +41,38 @@ public:
         return dummy->next;
     }
 };
+
+class Solution2 {
+    public:
+    /**
+     * 这是我的第二种解法，与第一种解法大同小异，都是一种两两交换、直接插入的方法
+    */
+    ListNode* reverseBetween(ListNode* head, int m, int n)
+    {
+        ListNode * dummyNode = new ListNode(0);
+        ListNode * pre = dummyNode;
+        dummyNode->next = head;
+
+        /**
+         * 从 dummy Node 移动 pre 节点 m-1 步，使其移至我们需要的移动节点之前
+        */
+        for (int i = 0; i < m - 1; ++i) pre = pre->next;
+
+        ListNode * cur = pre->next;
+
+        /**
+         * 开始插入节点
+        */
+       for (int i = m; i < n; i++)
+       {
+           ListNode *tmp = cur->next;
+
+           cur->next = tmp->next;
+           tmp->next = pre->next;
+           pre->next = tmp;
+       }
+        return dummyNode->next;
+
+    }
+
+};
