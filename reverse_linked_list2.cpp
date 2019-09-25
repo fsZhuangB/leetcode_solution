@@ -63,6 +63,7 @@ class Solution2 {
         /**
          * 开始插入节点
         */
+       /** 没看懂链表怎么移动 */
        for (int i = m; i < n; i++)
        {
            ListNode *tmp = cur->next;
