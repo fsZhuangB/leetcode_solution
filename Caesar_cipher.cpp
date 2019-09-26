@@ -55,7 +55,5 @@ int main()
     */
     std::string encrypted_string = encrypt(test, dict);
     std::cout << encrypted_string << std::endl;
-
-
 }
 
