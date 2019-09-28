@@ -6,6 +6,7 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+#include <iostream>
 
 class ListNode {
     public:
@@ -48,8 +49,49 @@ class Solution2 {
     }
 };
 
+class Solution3 {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (head == NULL || head->next == NULL)
+            return head;
+        ListNode *dummyNode = NULL;
+        ListNode *current = head;
+
+        while (current)
+        {
+            ListNode *tmp = current->next;
+            current->next = dummyNode;
+            dummyNode = current;
+            current = tmp;
+        }
+        return dummyNode;
+    }
+};
+
+void iterate(ListNode *node)
+{
+    ListNode *current = node;
+    while (current != NULL)
+    {
+        std::cout << current->val << std::endl;
+        current = current->next;
+    }
+}
+
 int main()
 {
+    Solution3 s3;
+
+    ListNode node1(1);
+    ListNode node2(3);
+    ListNode node3(4);
+
+    node1.next = &node2;
+    node2.next = &node3;
+    node3.next = NULL;
+    s3.reverseList(&node1);
+    iterate(&node1);
+
 
     return 0;
 }
