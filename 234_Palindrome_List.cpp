@@ -89,9 +89,44 @@ public:
         return true;
     }
 };
+
+class Solution2 
+{
+    public:
+    bool isPalindrome(ListNode* head) {
+        // 要注意空指针的情况！这是正确的！
+        ListNode *fast = head->next, *slow = head;
+        // 首先找到中点的位置，例如当length=4时，slow的index为1，当length=5时，slow的index为2
+        while (fast && fast->next)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        // 从中点元素的后一个开始反转链表（因为我们可以直接排除中点元素，它之后的元素）
+        ListNode *dummy = nullptr, *current = slow->next;
+        while (current)
+        {
+            ListNode *tmp = current->next;
+            current->next = dummy;
+            dummy = current;
+            current = tmp;
+        }
+
+        while (dummy)
+        {
+            if (dummy->val != head->val)
+                return false;
+            dummy = dummy->next;
+            head = head->next;
+        }
+        
+        return true;
+    }
+
+};
 int main()
 {
-    Solution s3;
+    Solution2 s3;
 
     ListNode node1(-129);
     ListNode node2(3);
