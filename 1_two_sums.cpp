@@ -6,7 +6,7 @@
 #include <vector>
 #include <iostream>
 #include <unordered_map>
-
+using namespace std;
 /*
 ** force method
 **/
@@ -61,6 +61,28 @@ namespace sn
     };
 
 }
+
+class Solution3 {
+    public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int, int> tools;
+        vector<int> result;
+        int i = 0, length = nums.size();
+        for (; i < length; ++i)
+            tools[nums[i]] = i;
+        for (int j = 0; j < length; ++j)
+        {
+            // if not find
+            if (tools.find(target - nums[j]) != tools.end() && tools[target - nums[j]] != j)
+            {
+                result.push_back(j);
+                result.push_back(tools[target-nums[j]]);
+                break;
+            }    
+        }
+        return result;
+    }
+};
 
 int main()
 {
