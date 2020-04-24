@@ -49,6 +49,9 @@ class Solution2 {
     }
 };
 
+/**
+ * 这个方法比较容易想，但是要记得tmp节点直接在循环中更新就好了，不需要直接更新。
+*/
 class Solution3 {
 public:
     ListNode* reverseList(ListNode* head) {
