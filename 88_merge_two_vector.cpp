@@ -24,6 +24,14 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n)
     while (k < m)  // k还没到头
         nums1[i++] = num[k++];
 }
+
+void merge2(vector<int>& nums1, int m, vector<int>& nums2, int n)
+{
+    int j = 0;
+    for (int i = m; i < m + n; i++)
+        nums1[i] = nums2[j++];
+    sort(nums1.begin(), nums1.end());
+}
 };
 
 int main()
