@@ -56,6 +56,35 @@ class Solution2 {
         }
 };
 
+/**
+ * Reverse part of the number, this can avoid the possible overflow of reversing number.
+ * number % 10 can get the last number of the number
+ * Then we use number / 10 to get rid of the last number
+ * To judge whether we reach the middle of the number, we can use:
+ * if the original number has bigger than the reverse number, we can know that we have reverse the part of the number
+*/
+class Solution3 {
+        bool isPalindrome(int x) {
+            // special condition
+            // when x < 0, return false
+            // when the last bit the number is 0, the first bit must be 0, it can be the right number
+            if (x < 0 || (x % 10 == 0 && x != 0))
+                return false;
+            
+            int reverseNumber = 0;
+            // find whether we reach the middle of the number
+            while (x > reverseNumber)
+            {
+                reverseNumber = reverseNumber * 10 + x % 10;
+                x /= 10; // remove the last bit
+            }
+
+            // if the number is odd, the number in the middle doesn't affect the judgement
+            // so we can remove the number
+            return x == reverseNumber || x == reverseNumber/10;
+        }
+};
+
 int main()
 {
     Solution1 s;
