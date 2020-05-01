@@ -158,6 +158,34 @@ class Solution2
     }
 };
 
+class Solution3 {
+    public:
+    /**
+     * 使用迭代方法解决
+     * 为了方便找到头节点，我们可以设置一个dummy node
+    */
+    ListNode *mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode* header = new ListNode(-1);
+        ListNode* pre = header;
+
+        while (l1 != nullptr && l2 != nullptr)
+        {
+            if (l1->val < l2->val)
+            {
+                pre->next = l1;
+                l1 = l1->next;
+            }
+            else
+            {
+                pre->next = l2;
+                l2 = l2->next;
+            }
+            pre = pre->next;
+        }
+        return header->next;
+    }
+
+};
 int main()
 {
     Solution s2;
