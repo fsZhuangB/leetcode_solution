@@ -183,8 +183,10 @@ class Solution3 {
             pre = pre->next;
         }
         return header->next;
-    }
 
+    // 如果还有剩下的节点，只需要简明的将pre->next指向它即可
+        pre->next = (l1 == nullptr) ? l2 : l1;
+    }
 };
 int main()
 {
