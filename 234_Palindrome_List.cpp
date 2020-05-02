@@ -12,6 +12,8 @@
 */
 #include <math.h>
 #include <iostream>
+#include <vector>
+using namespace std;
 
 class ListNode {
     public:
@@ -122,6 +124,34 @@ class Solution2
         
         return true;
     }
+
+};
+
+class Solution3 {
+    // O(n) space complexity
+    // this solution I use a vector to store the linked list
+    // then reverse the vector, and compare them
+        bool isPalindrome(ListNode* head) {
+        if (head == NULL || head->next == NULL)
+            return true;
+        ListNode* p = head;
+        vector<int> a;
+        while (p != NULL)
+        {
+            a.push_back(p->val);
+            p = p->next;
+        }
+
+        vector<int> b(a);
+        reverse(a.begin(), a.end());
+        for (int i = 0; i < a.size();++i)
+        {
+            if (a[i] != b[i])
+                return false;
+        }
+        return true;
+    }
+
 
 };
 int main()
