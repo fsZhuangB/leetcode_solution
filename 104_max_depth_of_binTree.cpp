@@ -1,3 +1,4 @@
+#include <queue>
 
 class TreeNode
 {
@@ -23,4 +24,35 @@ public:
         
         return std::max(leftHeight, rightHeight) + 1;
     }
+};
+
+// this solution I use BFS, we have to maintain a varible named depth
+// when iteration stops, we can find the depth of the bintree
+class Solution2 {
+    public:
+    int maxDepth(TreeNode* root)
+    {
+        if (root == nullptr)
+            return 0;
+        std::queue<TreeNode*> q;
+        q.push(root);
+        int depth = 0;
+
+        while (!q.empty())
+        {
+            // 每次循环，depth++
+            depth++;
+            int size = q.size();
+            for (int i = 0; i < size; ++i)
+            {
+                TreeNode* p = q.front();
+                if (p->left)
+                    q.push(p->left);
+                if (p->right)
+                    q.push(p->right);
+            }
+        }
+        return depth;
+    }
+
 };
