@@ -16,13 +16,18 @@ using namespace std;
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        int i = 0, j = 0;
-        while (++j < nums.size())
+        if (nums.size() < 2)
+            return nums.size();
+        int i = 0, j = 1;
+        for (; j < nums.size(); ++j)
         {
             if (nums[i] != nums[j])
-                nums[++i] = nums[j];
+                {
+                    i++;
+                    nums[i] = nums[j];
+                }
         }
-        return j - i;
+        return i + 1;
     }
 };
 
