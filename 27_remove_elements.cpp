@@ -43,6 +43,38 @@ class Solution {
     }
 };
 
+/**
+ * Solution3:
+ * double pointer: if the array has few elements to delete, such as num = [1, 2, 3, 4, 5], val = 4
+ * the previous solution may have unecessary swap to the 4 elements.
+ * SO the SOLUTION is: when we nums[i] == val, we can swap the elements with the last elements.
+ * Also, we have to release the last elements.
+ * You gave to pay attention that the question said the order of the elements are not required.
+ * So we can use this algorithm.
+*/
+class Solution3 
+{
+    int removeElements(vector<int>& nums, int val)
+    {
+        int i = 0; // the index
+        int n = nums.size(); // the last element
+        while (i < n)
+        {
+            if (nums[i] == val)
+            {
+                nums[i] = nums[n - 1];
+                n--;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        return n;
+
+    }
+
+};
 int main()
 {
     vector<int> a{1, 2, 2, 3, 4};
