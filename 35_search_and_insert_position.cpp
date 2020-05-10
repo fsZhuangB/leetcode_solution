@@ -33,6 +33,10 @@ public:
             else 
                 return mi;
         }
+        /**
+         * Remember there's another comparison in the last iteration
+         * So we need to return lo, not mi
+        */
         return lo;
     }
     int searchInsert(vector<int>& nums, int target) {
