@@ -1,5 +1,6 @@
 /**
- * Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
+ * Given a non-negative integer numRows, 
+ * generate the first numRows of Pascal's triangle.
 */
 #include <vector>
 using namespace std;
